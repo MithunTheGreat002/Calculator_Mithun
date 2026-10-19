@@ -1,0 +1,176 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    overflow: hidden;
+}
+
+/* Main Container handles the Glassmorphism now */
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.output {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 16px;
+    word-wrap: break-word;
+    word-break: break-all;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.3);
+    min-height: 100px;
+}
+
+.output .previous-operand {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    min-height: 1.5rem;
+}
+
+.output .current-operand {
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 500;
+}
+
+.keypad-wrapper {
+    display: flex;
+    gap: 12px;
+}
+
+.basic-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 75px);
+    grid-template-rows: repeat(5, 75px);
+    gap: 12px;
+}
+
+/* Scientific Grid Configuration */
+.scientific-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 75px);
+    grid-template-rows: repeat(5, 75px);
+    gap: 12px;
+    
+    /* Hidden by default */
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateX(-20px);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* When active, show the scientific keys */
+.calculator-container.show-scientific .scientific-grid {
+    width: calc(150px + 12px); /* 2 columns + gap */
+    opacity: 1;
+    transform: translateX(0);
+    padding-right: 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn {
+    cursor: pointer;
+    font-size: 1.4rem;
+    border: none;
+    outline: none;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.15s ease-in-out;
+    user-select: none;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.btn:active, .btn.pressed {
+    background: rgba(255, 255, 255, 0.02);
+    transform: translateY(2px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.operator-btn {
+    background: rgba(255, 166, 0, 0.15);
+    color: #ffa600;
+}
+.operator-btn:hover { background: rgba(255, 166, 0, 0.25); }
+
+.action-btn {
+    background: rgba(255, 75, 75, 0.15);
+    color: #ff4b4b;
+}
+.action-btn:hover { background: rgba(255, 75, 75, 0.25); }
+
+#toggle-sci {
+    background: rgba(0, 150, 255, 0.15);
+    color: #00a2ff;
+}
+#toggle-sci:hover { background: rgba(0, 150, 255, 0.25); }
+#toggle-sci.active {
+    background: rgba(0, 150, 255, 0.4);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.equals-btn {
+    background: rgba(0, 200, 150, 0.2);
+    color: #00e6a8;
+}
+.equals-btn:hover { background: rgba(0, 200, 150, 0.3); }
+
+.sci-btn {
+    font-size: 1.1rem;
+    color: #d1d1d1;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+    .basic-grid, .scientific-grid {
+        grid-template-columns: repeat(4, 60px);
+        grid-template-rows: repeat(5, 60px);
+        gap: 8px;
+    }
+    
+    .scientific-grid {
+        grid-template-columns: repeat(2, 60px);
+    }
+    
+    .calculator-container.show-scientific .scientific-grid {
+        width: calc(120px + 8px); 
+    }
+    
+    .output .current-operand { font-size: 1.8rem; }
+    .btn { font-size: 1.2rem; }
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Scientific Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="calculator-container" id="calculator-container">
+        <!-- Dual Row Display (Spans full top width) -->
+        <div class="output">
+            <div data-previous-operand class="previous-operand"></div>
+            <div data-current-operand class="current-operand"></div>
+        </div>
+        
+        <div class="keypad-wrapper">
+            <!-- Scientific Controls (Hidden by Default) -->
+            <div class="scientific-grid" id="scientific-grid">
+                <button data-unary="sin" class="btn sci-btn">sin</button>
+                <button data-unary="cos" class="btn sci-btn">cos</button>
+                <button data-unary="tan" class="btn sci-btn">tan</button>
+                <button data-unary="log" class="btn sci-btn">log</button>
+                <button data-unary="ln" class="btn sci-btn">ln</button>
+                <button data-unary="sqrt" class="btn sci-btn">√</button>
+                <button data-unary="square" class="btn sci-btn">x²</button>
+                <button data-operation="^" class="btn sci-btn">xⁿ</button>
+                <button data-constant="pi" class="btn sci-btn">π</button>
+                <button data-constant="e" class="btn sci-btn">e</button>
+            </div>
+
+            <!-- Basic Controls -->
+            <div class="basic-grid">
+                <!-- TOP ROW: SCI toggle replaces the extra space AC used to take -->
+                <button id="toggle-sci" class="btn action-btn">SCI</button>
+                <button data-all-clear class="btn action-btn" data-key="Escape">AC</button>
+                <button data-delete class="btn action-btn" data-key="Backspace">DEL</button>
+                <button data-operation="/" class="btn operator-btn" data-key="/">÷</button>
+                
+                <!-- NUMBERS & BASIC OPERATORS -->
+                <button data-number="7" class="btn" data-key="7">7</button>
+                <button data-number="8" class="btn" data-key="8">8</button>
+                <button data-number="9" class="btn" data-key="9">9</button>
+                <button data-operation="*" class="btn operator-btn" data-key="*">×</button>
+                
+                <button data-number="4" class="btn" data-key="4">4</button>
+                <button data-number="5" class="btn" data-key="5">5</button>
+                <button data-number="6" class="btn" data-key="6">6</button>
+                <button data-operation="-" class="btn operator-btn" data-key="-">−</button>
+                
+                <button data-number="1" class="btn" data-key="1">1</button>
+                <button data-number="2" class="btn" data-key="2">2</button>
+                <button data-number="3" class="btn" data-key="3">3</button>
+                <button data-operation="+" class="btn operator-btn" data-key="+">+</button>
+                
+                <button data-number="0" class="btn span-two" data-key="0">0</button>
+                <button data-number="." class="btn" data-key=".">.</button>
+                <button data-equals class="btn equals-btn" data-key="Enter">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
